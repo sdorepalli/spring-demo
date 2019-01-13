@@ -2,6 +2,19 @@ package com.spring.demo.model;
 
 public class Product {
 
+	public Product() {
+		
+		System.out.println("in default constructor..");
+	}
+	
+	public Product(String id, String title, String color, String price) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.color = color;
+		this.price = price;
+	}
+
 	private String id;
 
 	private String title;
