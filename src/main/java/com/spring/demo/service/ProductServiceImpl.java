@@ -10,6 +10,8 @@ import com.spring.demo.model.Product;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+
+
 	public List<Product> getAllProducts() {
 
 		List<Product> productList = new ArrayList<Product>();
@@ -43,8 +45,8 @@ public class ProductServiceImpl implements ProductService {
 		for (Product p : l) {
 
 			System.out.println("for p : " + p.getTitle());
+			result = p;
 			if (p.getTitle().equalsIgnoreCase(title)) {
-				result = p;
 				break;
 			}
 		}
@@ -69,13 +71,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product getProductByColor(String color) {
-		
-		Product result = null;		
+
+		Product result = null;
 		List<Product> l = getAllProducts();
 		for (Product p : l) {
 			if (p.getColor().equalsIgnoreCase(color)) {
 				result = p;
-		    break;
+				break;
 			}
 		}
 		return result;
@@ -83,21 +85,33 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product getProductByPrice(String price) {
+
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Product addProduct(Product product) {
+		addProduct(product);
+		return product;
 
-		return null;
 	}
 
 	@Override
 	public Product updateProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		return product;
+       
+		/*
+		 * for (Product oldProduct : product) { if (oldProduct.getId() ==
+		 * product.getId()) { oldProduct.setColor(product.getColor());
+		 * oldProduct.setTitle(product.getTitle());
+		 * oldProduct.setPrice(product.getPrice());
+		 */
+		
+
 	}
+
+
 
 	@Override
 	public Product deleteProduct(String title) {

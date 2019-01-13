@@ -55,4 +55,9 @@ public class Product {
 		this.price = price;
 	}
 
+	public String getProductById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -3,8 +3,12 @@ package com.spring.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,4 +42,32 @@ public class ProductController {
 		return productService.getProductByColor(color);
 
 	}
+
+	@PostMapping("/products")
+	public Product addProduct(@RequestBody Product product) {
+
+		return product;
+
+		/*
+		 * productService.addProduct(product); return product;
+		 */
+
+	}
+
+	@PostMapping("/productsupdate")	
+     public ResponseEntity<Product> updaProduct(@RequestBody Product product) {
+    	 Product p = productService.getProductById(product.getProductById());
+    	 if (p == null) {
+ 			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+ 		}
+    	 p.setId(product.getId());
+    	 p.setTitle(product.getTitle());
+    	 p.setPrice(product.getPrice());
+    	 p.setColor(product.getColor());
+ 		productService.updateProduct(p);
+ 		return new ResponseEntity<Product>(p,HttpStatus.OK);
+ 		
+    	 
+     }
+
 }
